@@ -3,12 +3,11 @@ String estado;
 float px, py, bx, by, ox, oy, oox, ooy;
 int ptx, pty, bt, otx, oty;
 boolean c[][]= new boolean[12][16], pelotaAire, x, yY, gana;
-
 void setup() {
   size(600, 600);
   textSize( 35 );
   textAlign( CENTER, CENTER );
-  estado= "Break the Brick";
+  estado= "BREAK THE BRICK";
   otx= 50;
   oty= 25;
   ptx= 100;
@@ -25,23 +24,28 @@ void setup() {
   }
 }
 void draw() {
-  if ( estado.equals("Break the Brick") ) {
-    background( 200, 100, 100 );
+  if ( estado.equals("BREAK THE BRICK") ) {
+    textSize (50);
+    background( 255, 100, 100 );
     text( estado, width/2, height/2 );
-    text( "presione la letra A para comenzar", width/2, height/2+100 );
+    textSize (20);
+    text( "presione la letra A para comenzar", width/2, height/2+60 );
   }
-  if ( estado.equals("Instrucciones") ) {
-    background( 200, 100, 80 );
-    text( estado, 300, 20 ); 
-    text("Con las flechas moverás la barra", 300, 70);
-    text ("hacia los costados con el fin de", 300, 110);
-    text ("recoger la pelota a su caída y", 300, 150);
-    text ("hacerla subir de nuevo", width/2, 190 );
-    text ("Objetivo:", width/2, 250);
-    text ("Romper todos los ladrillos de la", width/2, 290);
-    text ("parte superior para ganar.", width/2, 325);
-    text ("Si perdiste, apreta el enter", width/2, 390);
-    text ("para volver a jugar", width/2, 430);
+  if ( estado.equals("Créditos") ) {
+    background( 255, 100, 100 );
+    textSize (30);
+    text( "TECNOLOGÍA MULTIMEDIAL", 300, 100 );
+    textSize (20);
+    text( "Integrantes: \n MIGUEL, Karen 91513/3 \n RONIT KONIG, Micaela 91857/6", 300, 230 );
+    text( "\n Matías Jauregui Lorda \n Comisión 2", 300, 350 );
+    text( "Presiona ENTER para continuar", 300, 500 );
+  }
+  if ( estado.equals("INSTRUCCIONES DEL JUEGO") ) {
+    background( 343, 83, 99 );
+    text( estado, width/2, height/2 ); 
+    textSize( 20);
+    text("\n Con las flechas moverás la barra hacia los  \n costados con el fin de recoger la pelota \n a su caída y hacerla subir nuevamente", width/2, height/2+75 );
+    textSize( 35 );
     //botón con mouse over
     pushStyle();
     if ( dist( mouseX, mouseY, width/2, height/2+100) <= 25 ) {
@@ -49,9 +53,11 @@ void draw() {
     } else {
       fill( 0 );
     }
+    fill (255);
     rect( 400, 500, 50, 50 );
     textSize(20);
     fill (255);
+    fill (343, 83, 99);
     text ("PLAY", 425, 530);
     popStyle();
   }
@@ -62,22 +68,22 @@ void draw() {
         oox=i*otx+otx/2;
         ooy=j*oty+oty/2;
         if (j<=2) {
-          fill(255, 0, 0);
+          fill(255, 41, 41);
         }
         if (j<=4 && j>2) {
-          fill(0, 255, 0);
+          fill(250, 61, 216);
         }
         if (j>4 && j<=6) {
-          fill(0, 0, 255);
+          fill(22, 247, 234);
         }
         if (j>7 && j<=8) {
-          fill (30, 90, 50);
+          fill (18, 126, 255);
         }
         if (j>10 && j<=12) {
-          fill (100, 20, 80);
+          fill (227, 250, 58);
         }
         if (j>13 && j<=16) {
-          fill (30, 30, 100);
+          fill (249, 88, 250);
         }
         if (c[i][j]) {
           Objetivo(oox, ooy );
@@ -103,43 +109,45 @@ void draw() {
     Bola();
   }
   if (estado.equals("Perdiste")) {
-    background( 200, 100, 80 );
+    background( 252, 54, 57 );
     text( "Perdiste", width/2, height/2 );
     Reinicio();
   }
   if (estado.equals("Ganaste")) {
-    background( 200, 100, 80 );
+    background( 55, 247, 88 );
     text( "Ganaste", width/2, height/2 );
     Reinicio();
   }
-  //println(mouseX, mouseY,estado);
+  //println(mouseX, mouseY, estado);
 }
-
 void keyPressed() {
-  if ( estado.equals("Break the Brick") && key == 'a' ) {
-    estado = "Instrucciones";
+  if ( estado.equals("BREAK THE BRICK") && key == 'a' ) {
+    estado = "Créditos";
+  }
+  if ( estado.equals("Créditos") && key == ENTER ) {
+    estado = "INSTRUCCIONES DEL JUEGO";
   }
   if ( estado.equals("Juego")) {
     if (keyCode==RIGHT) {
-      px= px+3;
+      px= px+5;
     }
     if (keyCode==LEFT) {
-      px= px-3;
+      px= px-5;
     }
   }
   if ( estado.equals("Perdiste")) {
     if (keyCode==ENTER) {
-      estado="Break the Brick";
+      estado="BREAK THE BRICK";
     }
   }
   if ( estado.equals("Ganaste")) {
     if (keyCode==ENTER) {
-      estado="Break the Brick";
+      estado="BREAK THE BRICK";
     }
   }
 }
 void mousePressed() {
-  if ( estado.equals("Instrucciones") && mouseX>=400 && mouseX<=450 && mouseY>=500 &&mouseY<= 600) {
+  if ( estado.equals("INSTRUCCIONES DEL JUEGO") && mouseX>=400 && mouseX<=450 && mouseY>=500 &&mouseY<= 600) {
     estado = "Juego";
   }
   if ( estado.equals("Juego")) {
@@ -164,14 +172,14 @@ void Bola() {
   ellipse(bx, by, bt, bt );
   if (pelotaAire) {
     if (x) {
-      bx++;
+      bx=bx+2;
     } else {
-      bx--;
+      bx=bx-2;
     }
     if (yY) {
-      by++;
+      by=by+2;
     } else {
-      by--;
+      by=by-2;
     }
     if (bx<=0) {
       x=true;
@@ -200,9 +208,6 @@ void Objetivo(float cx, float cy) {
   ox=cx;
   oy=cy;
   rect(ox, oy, otx, oty);
-  textSize(30);
-  text("Micaela Ronit Konig 91857/6", 300, 100);
-  text("Karen Miguel 91513/3", 300, 150);
 }
 void Reinicio() {
   py=height-pty/2;
