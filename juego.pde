@@ -1,6 +1,6 @@
 class Juego {
   String estado; 
-  PImage ini, per, gan, cred, ins;
+  PImage ini, per, gan, cred, ins, tiempo;
   Fondo fondo;
   Personaje personaje;
   dragones dragon;
@@ -16,12 +16,13 @@ class Juego {
     gan= loadImage( "ganaste.png");
     cred= loadImage( "creditos.jpg");
     ins= loadImage( "instrucciones.jpg");
+    tiempo = loadImage( "tiempo.png");
     estado = "inicio";
   }
 
 
 
-  void colision() {
+  void colision() { // Colisión del personaje con el dragón, cuando colisiona perdiste.
 
 
     for (i=0; i<4; i++) {
@@ -41,18 +42,17 @@ class Juego {
 
 
 
-  void dibujar() {
+  void dibujar() { // Lógica de estado
     if (estado == "inicio") {
       image(ini, 0, 0, width, height);
       if (mousePressed & mouseX > 700)
         estado = "nivel1";
-
-      if (mousePressed & mouseX > 400)
-        image(ins, 0, 0, width, height);
-
-
-      if (mousePressed & mouseX < 300)
-        estado = "creditos";
+      else
+        if (mousePressed & mouseX  < 300)
+          estado = "creditos";
+        else 
+        if (mousePressed & mouseX < 500)
+          estado = "instrucciones";
     } else
       if (estado == "nivel1") {
 
@@ -67,8 +67,14 @@ class Juego {
         personaje.dibujar();
         colision();
         ganaste();
+        rect(10, 10, 95, 50);
+        noStroke();
+        fill(255, 0, 0);
         text(m/100, 50, 50);
-        textSize (30);
+        image(tiempo, 10, 10, 50, 50);
+        textSize(150);         
+        fill(150, 143, 238);
+
         if (m < 0 )
           estado = "perdiste";
       } else
@@ -100,7 +106,12 @@ class Juego {
               image(cred, 0, 0, width, height);
               if (mousePressed & mouseX > 700)
                 estado = "inicio";
-            }
+            } else
+              if (estado == "instrucciones") {
+                image(ins, 0, 0, width, height);
+                if (mousePressed & mouseX > 700)
+                  estado = "inicio";
+              }
   }
 
   void teclado() {
