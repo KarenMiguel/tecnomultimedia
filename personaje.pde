@@ -1,44 +1,36 @@
-class Personaje{
-PImage principe;
-  int x, y, d; 
+// tp5 tecnomultimedia
+// Miguel, Karen & Walter, Luz
+// El juego consiste en que el principe tiene que esquivar a los dragones para llegar a la princesa
 
 
-  Personaje () {
-    principe= loadImage ("principe.png");
-    x= 50;
-    y= 80;
-  }
-  
-  
-  
-  
-  void dibujar () {
-    image(principe, x, y , 80,90); 
-  }
+import ddf.minim.*;
 
 
-  void mover() {
+Minim minim;
+AudioPlayer audio;
+AudioPlayer audio2;
+AudioPlayer audio3;
 
-    if (( keyCode== UP) && (y > 80)){
-      y = y - 105;}
-      
-       if ((keyCode== DOWN) && (y < 300))
-         y = y + 105;
-                
-                if((keyCode== LEFT) &&(x > 1))
-                x= x - 5; 
-                 if((keyCode== RIGHT) &&(x < 750))
-                x= x + 5; 
-  }
+Juego juego;
 
 
 
-int Px(){
- return x; 
-}  
-
-int Py(){
- return y; 
-}  
-
+void setup() {
+  size(1000, 600);
+  minim = new Minim(this);
+  audio = minim.loadFile("SleepingBeauty.wav");
+  audio2 = minim.loadFile("perdiste.wav");
+  audio3 = minim.loadFile("ganaste.wav");
+  juego = new Juego();
 }
+
+void draw() {
+  juego.dibujar();
+}
+
+void keyPressed() {
+  juego.teclado();
+}
+
+
+
