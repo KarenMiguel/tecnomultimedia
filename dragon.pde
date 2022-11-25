@@ -16,24 +16,25 @@ class dragon {
 
   void dibujar() {
 
-  // if(second() < 3 | second() > 57  | (second() > 12 & second() < 15)| (second() > 20 & second() < 23))
-  // if((second() == 3) || (second() == 7) || (second() == 11)|| (second() == 15)|| (second() == 25)|| (second() == 15))
-   if(second() % 5 == 0)
-     ok = false;
-      else
-       ok = true;
-     
-    
-    if(ok){
-    x = x - random(vel);
-        y = y + 1;}
-     else{
-       x = x + random(vel);
-         y = y - 2.9;}
-   
-       
-       
-       
+    // if(second() < 3 | second() > 57  | (second() > 12 & second() < 15)| (second() > 20 & second() < 23))
+    // if((second() == 3) || (second() == 7) || (second() == 11)|| (second() == 15)|| (second() == 25)|| (second() == 15))
+    if (second() % 5 == 0)
+      ok = false;
+    else
+      ok = true;
+
+
+    if (ok) {
+      x = x - random(vel);
+      y = y + 1;
+    } else {
+      x = x + random(vel);
+      y = y - 2.9;
+    }
+
+
+
+
     image(dragon, x, y, tam, tam-20);
     if (x < -100) {
       x= random(800, 1030);
@@ -41,11 +42,11 @@ class dragon {
     }
   }
 
-  float Px() {
+  float Posx() {
     return x;
   }  
 
-  float Py() {
+  float Posy() {
     return y;
   }
 }
