@@ -10,7 +10,7 @@ class dragon {
     x= random(500, 1500); // Posición x
     y= _y; // Posición y 
     dragon = loadImage( "dragon.png");
-    vel = random(4, 10); // Velocidad aleatoria que le dimos a los dragones dentro de esos param igualmente.
+    vel = random(2, 9); // Velocidad aleatoria que le dimos a los dragones dentro de esos param igualmente.
     ok = true;
   }
 
@@ -26,10 +26,10 @@ class dragon {
 
 
     if (ok) {
-      x = x - random(vel); // Mientras los dragones avanzan, bajan, como avanzan + de lo que suben, banjan 1 píx.
+      x = x - random(vel); 
       y = y + 0.9;
     } else {
-      x = x + random(vel-3); // En este caso, cuando retroceden suben 2 píx.
+      x = x + random(vel-3); 
       y = y - 2.7; 
     }
 
