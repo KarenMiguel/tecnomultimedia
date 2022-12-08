@@ -6,12 +6,10 @@ class Fondo {
 
     x= width;
     y= height;
-
-    //calle= loadImage("calle.png");
+    calle= loadImage("calle.png");  
   }
 
   void dibujar() {
-        calle= loadImage("calle.png");
-        image(calle,0,0, x, y );
+    image(calle, 0, 0, x, y );
   }
 }
