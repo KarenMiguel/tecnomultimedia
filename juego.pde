@@ -11,11 +11,11 @@ class Juego {
     fondo= new Fondo();
     personaje= new Personaje ();
     dragon= new dragones();
-    ini= loadImage( "comenzar.jpg");
+    ini= loadImage( "comenzar.png");
     per= loadImage( "perdiste.png");
     gan= loadImage( "ganaste.png");
-    cred= loadImage( "creditos.jpg");
-    ins= loadImage( "instrucciones.jpg");
+    cred= loadImage( "creditos.png");
+    ins= loadImage( "instrucciones.png");
     tiempo = loadImage( "tiempo.png");
     estado = "inicio";
   }
